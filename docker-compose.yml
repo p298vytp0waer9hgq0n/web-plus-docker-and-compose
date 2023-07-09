@@ -5,7 +5,7 @@ services:
     depends_on:
       - postgres
     ports: 
-      - "3000:3000"
+      - "4000:3000"
     links:
       - postgres:$POSTGRES_HOST
     env_file:
@@ -22,7 +22,7 @@ services:
     build: frontend/
     image: kupipodaridai-frontend
     ports:
-      - "3001:80"
+      - "8081:80"
     links:
       - app:backend.local
 volumes:
