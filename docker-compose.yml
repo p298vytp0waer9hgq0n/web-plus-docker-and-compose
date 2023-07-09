@@ -1,0 +1,22 @@
+services:
+  app:
+    build: backend/
+    image: kupipodaridai
+    depends_on:
+      - postgres
+    ports: 
+      - "3000:3000"
+    links:
+      - postgres:$POSTGRES_HOST
+    env_file:
+      - .env
+    restart: on-failure
+  postgres:
+    image: "postgres"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: on-failure
+volumes:
+  postgres-data:

@@ -20,7 +20,7 @@ import { User } from 'src/users/entities/user.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get('SECRET'),
+        secret: configService.get('JWT_SECRET'),
         signOptions: { expiresIn: '1d' },
       }),
     }),
