@@ -26,7 +26,5 @@ services:
     container_name: kpd-frontend-cont
     ports:
       - "8081:80"
-    links:
-      - app:backend.local
 volumes:
   postgres-data:
