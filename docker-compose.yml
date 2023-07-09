@@ -1,0 +1,46 @@
+services:
+  kpd-backend:
+    build: backend/
+    image: kupipodaridai-backend
+    container_name: kpd-backend-cont
+    depends_on:
+      - kpd-postgres
+    ports: 
+      - "4000:3000"
+    links:
+      - kpd-postgres:$POSTGRES_HOST
+    env_file:
+      - .env
+    networks:
+      - backend-network
+      - common-network
+    restart: on-failure
+  kpd-postgres:
+    image: "postgres"
+    container_name: kpd-db-cont
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - backend-network
+    restart: on-failure
+  kpd-frontend:
+    build: frontend/
+    image: kupipodaridai-frontend
+    container_name: kpd-frontend-cont
+    depends_on:
+      - kpd-backend
+    ports:
+      - "8081:80"
+    networks:
+      - common-network
+    restart: on-failure
+    
+volumes:
+  postgres-data:
+
+networks:
+  backend-network:
+    internal: true
+  common-network:
