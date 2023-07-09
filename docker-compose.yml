@@ -1,5 +1,5 @@
 services:
-  app:
+  kpd-backend:
     build: backend/
     image: kupipodaridai-backend
     container_name: kpd-backend-cont
@@ -20,7 +20,7 @@ services:
     env_file:
       - .env
     restart: on-failure
-  frontend:
+  kpd-frontend:
     build: frontend/
     image: kupipodaridai-frontend
     container_name: kpd-frontend-cont
