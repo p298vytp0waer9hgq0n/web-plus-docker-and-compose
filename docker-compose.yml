@@ -1,7 +1,7 @@
 services:
   app:
     build: backend/
-    image: kupipodaridai
+    image: kupipodaridai-backend
     depends_on:
       - postgres
     ports: 
@@ -18,5 +18,12 @@ services:
     env_file:
       - .env
     restart: on-failure
+  frontend:
+    build: frontend/
+    image: kupipodaridai-frontend
+    ports:
+      - "3001:80"
+    links:
+      - app:backend.local
 volumes:
   postgres-data:
