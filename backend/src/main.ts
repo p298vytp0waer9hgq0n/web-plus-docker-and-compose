@@ -5,9 +5,7 @@ import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
-  app.enableCors({
-    origin: ['http://sava.students.nomoredomains.work', 'https://sava.students.nomoredomains.work'],
-  });
+  app.enableCors();
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.useGlobalPipes(new ValidationPipe());
   app.use(cookieParser());
