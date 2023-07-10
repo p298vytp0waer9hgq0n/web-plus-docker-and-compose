@@ -8,5 +8,5 @@ RUN npm run build
 FROM nginx:latest AS backend
 WORKDIR /app
 COPY --from=base /app/build /usr/share/nginx/html
-COPY nginx /etc
+COPY nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
